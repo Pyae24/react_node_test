@@ -18,7 +18,7 @@ import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 
 // Public Pages
-import Landing from "./pages/Landing";
+// import Landing from "./pages/Landing";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import ForgotPassword from "./components/auth/ForgotPassword";
@@ -90,6 +90,23 @@ const ProtectedRoute = ({ children, requiredRole }) => {
  * 
  * Defines the application's routing structure and wraps the app with necessary providers.
  */
+
+// To check if user is authenticated
+const AuthenticatedLoading = () => {
+  const { user } = useAuth();
+  const isAuthenticated = !!user || !!localStorage.getItem("token");
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />
+  }
+
+  // if authenticated, show dashboard
+  const userRole = localStorage.getItem("userRole");
+  const redirectPath = userRole === "admin" ? "/admin/dashboard" : "/user/dashboard";
+
+  return <Navigate to={redirectPath} replace />
+}
+
 function App() {
   return (
     <AuthProvider>
@@ -101,7 +118,7 @@ function App() {
             <main className="flex-grow">
               <Routes>
                 {/* Public Routes */}
-                <Route path="/" element={<Landing />} />
+                <Route path="/" element={<AuthenticatedLoading />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
