@@ -9,8 +9,10 @@ import UserSidebar from "./UserSidebar";
 import Column from "./Column";
 import SortableItem from "./SortableItem";
 import notificationSound from "./notification.mp3";
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
   const [tasks, setTasks] = useState({
     "To Do": [],
     "In Progress": [],
@@ -129,6 +131,16 @@ const UserDashboard = () => {
               ))}
             </div>
           </DndContext>
+        </div>
+        
+        {/* Filter Tasks */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={() => navigate("/user/task-filter")}
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg font-semibold text-lg hover:opacity-90 transition-all shadow-lg"
+            >
+              Filter & Search Tasks
+          </button>
         </div>
 
         {/* Task Analytics & Notes Section */}

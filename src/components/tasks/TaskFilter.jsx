@@ -196,7 +196,7 @@ const TaskFilter = () => {
             <input
               id="search"
               type="text"
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="pl-10 py-2 block w-[500px] rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               placeholder="Search by title or description"
               value={filters.search}
               onChange={(e) => handleFilterChange('search', e.target.value)}
@@ -216,7 +216,7 @@ const TaskFilter = () => {
             </div>
             <select
               id="status-filter"
-              className="pl-10 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="pl-10 py-2 block w-[500px] rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
               value={filters.status}
               onChange={(e) => handleFilterChange('status', e.target.value)}
               aria-label="Filter tasks by status"

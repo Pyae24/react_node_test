@@ -33,9 +33,11 @@ const UserPage = () => {
     
     // ✅ Assign task to logged-in user
     const newTaskItem = { 
-      id: taskId, 
+      id: taskId,
+      _id: taskId, 
       ...newTask, 
-      assignedTo: loggedInUser // ✅ Store assigned user
+      assignedTo: loggedInUser, // ✅ Store assigned user
+      status: newTask.progress >= 100 ? "complete" : "incomplete"
     };
 
     const updatedTasks = [...tasks, newTaskItem];
@@ -59,7 +61,7 @@ const UserPage = () => {
   // Handle Progress Update
   const updateProgress = (taskId, progress) => {
     const updatedTasks = tasks.map((task) =>
-      task.id === taskId ? { ...task, progress: parseInt(progress) } : task
+      task.id === taskId ? { ...task, progress: parseInt(progress), status: parseInt(progress) >= 100 ? "complete" : "incomplete" } : task
     );
 
     setTasks(updatedTasks);
